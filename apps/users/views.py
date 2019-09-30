@@ -22,21 +22,23 @@ from django.db.utils import IntegrityError
 
 
 def loginView(request):
-    nit = ''
+    nit = '000'
+    name_company = 'nnn'
     if request.method == 'POST':
         # username = request.POST['username']
         email = request.POST['email']
         password = request.POST['password']
         username = User.objects.get(email=email.lower()).username
         user = authenticate(request, username=username, password=password)
-        # profile_obj = Profile.objects.get(user=user.id)
-        # print('profile_obj ::::::', profile_obj)
+        profile_obj = Profile.objects.get(user=user.id)
+        nit = profile_obj.nit if profile_obj else nit
+        name_company = profile_obj.name_company if profile_obj else name_company
         if user:
             login(request, user)
             return redirect('dashboard')
         else:
             return render(request, 'users/login.html', {'error':'Usuario o Password incorrectos'})
-    return render(request, 'users/login.html', {'nit': 123})
+    return render(request, 'users/login.html', {'nit': nit, 'name_company': name_company})
 
 
 def logoutView(request):
