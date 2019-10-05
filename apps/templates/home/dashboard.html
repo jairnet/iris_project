@@ -1,23 +1,40 @@
-{% extends "base.html" %}
+{% extends "base_dashboard.html" %}
+{% load static %}
 
 {% block title %}
-    <title>Dashboard | MIPRESS</title>
+    <title>IRISoft | Dashboard</title>
 {% endblock %}
+
+{% block link %}
+    <!-- <link rel="stylesheet" href="{% static 'css/offcanvas.css' %}"> -->
+{% endblock %}
+
+<!-- {% include 'navbar.html' %} -->
 {% block content %}
-    <div class="container">
-        <!-- <a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Salir</a> -->
-        <a href="{% url 'logout' %}" class="btn btn-outline-danger" role="button" aria-pressed="true">Salir</a>
-        <!-- <button type="button" class="btn btn-danger">Salir</button> -->
-        <h1>{{ name_company }}</h1>
-        <h1>Nit: {{ nit }}</h1>
-        <form class="form-inline">
-            <div class="form-group row">
-                <label for="example-date-input" class="col-2 col-form-label">Date</label>
-                <div class="col-10">
-                    <input class="form-control" type="date" value="2011-08-19" id="example-date-input">
-                </div>
-            </div>
-            <button type="submit" class="btn btn-primary mb-2">Confirm identity</button>
-        </form>
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Selecciona fecha para activar la consulta.</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div class="modal-body">   
+          <form action="{% url 'addressing-date' %}" method="post">
+            {% csrf_token %}
+            <input class="form-control" type="date" name="date" value="YYYY/mm/dd" id="date-start">
+            <hr>
+            <input type="submit" value="Consulta" id="button-consult" class="btn btn-success btn-lg disabled">
+          </form>
+        </div>  
+      </div>
     </div>
+  </div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/date_addressing.js' %}"></script>
 {% endblock %}

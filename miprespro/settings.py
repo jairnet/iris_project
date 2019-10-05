@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'apps.home',
     'apps.users',
     'apps.addressing',
+    # SSL Server is a SSL-enabled development server
+    'sslserver',
     # library deploy heroku
     'gunicorn',
     'psycopg2',
@@ -150,14 +152,16 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-# STATICFILES_DIRS = [
-#     os.path.join(BASE_DIR, "static"),
-#     '/var/www/static/',
-# ]
-
+#  En Local
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+]
 
 # Deploy Heroku Configurations
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
+
+# En produccion
+# STATIC_ROOT = os.path.join(BASE_DIR, "static")
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = 'media'
 
@@ -165,13 +169,3 @@ STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 ]
-
-# Others configurations for login whit email
-SITE_ID = 1
-
-ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_USERNAME_REQUIRED = False
-ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = False
-ACCOUNT_SESSION_REMEMBER = True
-ACCOUNT_AUTHENTICATION_METHOD = 'email'
-ACCOUNT_UNIQUE_EMAIL = True

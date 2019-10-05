@@ -1,9 +1,9 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, render_to_response
+from django.views.decorators.csrf import csrf_protect
 from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
-
+from django.http import HttpResponse
 from django.contrib.auth.models import User
-
 from django.views.generic import ListView, DetailView
 
 from apps.users.models import Profile 
@@ -20,12 +20,10 @@ from django.db.utils import IntegrityError
 #     def get_success_url(self):
 #         return reverse("dashboard")
 
-
+@csrf_protect
 def loginView(request):
-    nit = '000'
-    name_company = 'nnn'
+    nit = name_company = ''
     if request.method == 'POST':
-        # username = request.POST['username']
         email = request.POST['email']
         password = request.POST['password']
         username = User.objects.get(email=email.lower()).username
@@ -38,7 +36,7 @@ def loginView(request):
             return redirect('dashboard')
         else:
             return render(request, 'users/login.html', {'error':'Usuario o Password incorrectos'})
-    return render(request, 'users/login.html', {'nit': nit, 'name_company': name_company})
+    return render(request, 'users/login.html')
 
 
 def logoutView(request):

@@ -1,0 +1,5 @@
+{
+    "addressing_date" : "https://apimipres.herokuapp.com/api/address/",
+    "addressing_prescription" : "https://apimipres.herokuapp.com/api/prescription",
+    "addressing_document" : "https://apimipres.herokuapp.com/api/document" 
+}

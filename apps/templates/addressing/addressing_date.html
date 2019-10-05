@@ -1,0 +1,103 @@
+{% extends 'base_dashboard.html' %}
+{% load static %}
+
+{% block title %}
+    <title>Direccionamiento | Fecha</title>
+{% endblock %}
+
+{% block link %}
+    <link rel="stylesheet" href="{% static 'css/table_dashboard.css' %}">
+{% endblock %}
+
+{% block content %}
+    <br/>
+    <br/>
+    <br/>
+<main role="main" class="container">
+  <div class="table-responsive">
+    <table class="table">
+    <thead>
+    <tr >
+        <th scopr="col">Programacion</th>
+        <th scopr="col">Id</th>
+        <th scopr="col">NoPrescripcion</th>
+        <th scopr="col">TipoTec</th>
+        <th scopr="col">ConTec</th>
+        <th scopr="col">NoIdPaciente</th>
+        <th scopr="col">NoEntrega</th>
+        <th scopr="col">NoSubEntrega</th>
+        <th scopr="col">TipoIDProv</th>
+        <th scopr="col">NoIDProv</th>
+        <th scopr="col">CodMunEnt</th>
+        <th scopr="col">FecMaxEnt</th>
+        <th scopr="col">CantTotAEntregar</th>
+        <th scopr="col">DirPaciente</th>
+        <th scopr="col">CodSerTecAEntregar</th>
+    </tr>
+    </thead>
+    <h1 id="demo"></h1>
+    <tbody id='repos'>
+        {% for result in results %}
+        <tr>
+            <!-- <td>
+                <a href="{{ object.get_absolute_url }}">{{ object|upper }}</a>
+            </td> -->
+            <td class="col-xs-2" >
+                <span style="font-size: 30px; color: green;">
+                    <a href="#" type="button">
+                        <i class="far fa-calendar-check" onclick="return myFunction('{{forloop.counter}}')"></i>
+                    </a>
+                </span>
+            </td>
+            <td class="col-xs-2">
+                {{ result.id }}
+            </td>
+            <td id="NoPrescripcion_{{forloop.counter}}">
+                {{ result.NoPrescripcion }}
+            </td>
+            <td class="col-xs-2" id="TipoTec_{{forloop.counter}}">
+                {{ result.TipoTec }}
+            </td>
+            <td>
+                {{ result.ConTec }}
+            </td>
+            <td class="col-xs-2">
+                {{ result.NoIdPaciente }}
+            </td>
+            <td class="col-xs-2">
+                {{ result.NoEntrega }}
+            </td>
+            <td class="col-xs-2">
+                {{ result.NoSubEntrega }}
+            </td>
+            <td class="col-xs-2">
+                {{ result.TipoIDProv }}
+            </td>
+            <td class="col-xs-2">
+                {{ result.NoIDProv }}
+            </td>
+            <td class="col-xs-2">
+                {{ result.CodMunEnt }}
+            </td>
+            <td class="col-xs-2">
+                {{ result.FecMaxEnt }}
+            </td>
+            <td class="col-xs-2">
+                {{ result.CantTotAEntregar }}
+            </td>
+            <td class="col-xs-2">
+                {{ result.DirPaciente }}
+            </td>
+            <td class="col-xs-2">
+                {{ result.CodSerTecAEntregar }}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+</div>
+</main>
+{% endblock %}
+{% block scripts %}
+    <script src="{% static 'js/program_addressing.js' %}"></script>
+{% endblock %}
