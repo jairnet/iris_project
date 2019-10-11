@@ -22,8 +22,8 @@ from django.urls import reverse
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('apps.home.urls')),
-    path('usuarios/', include('apps.users.urls')),
-    path('direcc/', include('apps.addressing.urls')),
+    path('usr/', include('apps.users.urls')),
+    path('addressing/', include('apps.addressing.urls')),
     
 ]
 

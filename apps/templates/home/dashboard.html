@@ -12,22 +12,21 @@
 <!-- {% include 'navbar.html' %} -->
 {% block content %}
   <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="addressingDateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Selecciona fecha para activar la consulta.</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Selecciona una fecha para consultar.</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-
         <div class="modal-body">   
           <form action="{% url 'addressing-date' %}" method="post">
             {% csrf_token %}
             <input class="form-control" type="date" name="date" value="YYYY/mm/dd" id="date-start">
             <hr>
-            <input type="submit" value="Consulta" id="button-consult" class="btn btn-success btn-lg disabled">
+            <input type="submit" value="Consulta" id="button-consult" class="btn btn-success btn-lg">
           </form>
         </div>  
       </div>
@@ -36,5 +35,6 @@
 {% endblock %}
 
 {% block scripts %}
-<script src="{% static 'js/date_addressing.js' %}"></script>
-{% endblock %}
+  <script src="{% static 'js/date_addressing.js' %}"></script>
+  <script src="{% static 'js/program_addressing.js' %}"></script>
+  {% endblock %}

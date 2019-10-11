@@ -14,6 +14,8 @@
     <br/>
     <br/>
 <main role="main" class="container">
+
+  <!-- render table Addressing-->
   <div class="table-responsive">
     <table class="table">
     <thead>
@@ -32,7 +34,7 @@
         <th scopr="col">FecMaxEnt</th>
         <th scopr="col">CantTotAEntregar</th>
         <th scopr="col">DirPaciente</th>
-        <th scopr="col">CodSerTecAEntregar</th>
+        <th scopr="col">CodTecAEntregar</th>
     </tr>
     </thead>
     <h1 id="demo"></h1>
@@ -44,59 +46,119 @@
             </td> -->
             <td class="col-xs-2" >
                 <span style="font-size: 30px; color: green;">
-                    <a href="#" type="button">
-                        <i class="far fa-calendar-check" onclick="return myFunction('{{forloop.counter}}')"></i>
+                    <a type="button">
+                        <i class="far fa-calendar-check" data-toggle="modal" data-target="#addressingProgramModal" onclick="return loadAddressings('{{forloop.counter}}')"></i>
                     </a>
                 </span>
             </td>
-            <td class="col-xs-2">
+            <td class="col-xs-2" id="ID_{{forloop.counter}}">
                 {{ result.id }}
             </td>
-            <td id="NoPrescripcion_{{forloop.counter}}">
+            <td class="col-xs-2" id="NoPrescripcion_{{forloop.counter}}">
                 {{ result.NoPrescripcion }}
             </td>
             <td class="col-xs-2" id="TipoTec_{{forloop.counter}}">
                 {{ result.TipoTec }}
             </td>
-            <td>
+            <td class="col-xs-2" id="ConTec_{{forloop.counter}}">
                 {{ result.ConTec }}
             </td>
-            <td class="col-xs-2">
+            <td class="col-xs-2" id="NoIdPaciente_{{forloop.counter}}">
                 {{ result.NoIdPaciente }}
             </td>
-            <td class="col-xs-2">
+            <td class="col-xs-2" id="NoEntrega_{{forloop.counter}}">
                 {{ result.NoEntrega }}
             </td>
-            <td class="col-xs-2">
+            <td class="col-xs-2" id="NoSubEntrega_{{forloop.counter}}">
                 {{ result.NoSubEntrega }}
             </td>
-            <td class="col-xs-2">
+            <td class="col-xs-2" id="TipoIDProv_{{forloop.counter}}">
                 {{ result.TipoIDProv }}
             </td>
-            <td class="col-xs-2">
+            <td class="col-xs-2" id="NoIDProv_{{forloop.counter}}">
                 {{ result.NoIDProv }}
             </td>
-            <td class="col-xs-2">
+            <td class="col-xs-2" id="CodMunEnt_{{forloop.counter}}">
                 {{ result.CodMunEnt }}
             </td>
-            <td class="col-xs-2">
+            <td class="col-xs-2" id="FecMaxEnt_{{forloop.counter}}">
                 {{ result.FecMaxEnt }}
             </td>
-            <td class="col-xs-2">
+            <td class="col-xs-2" id="CantTotAEntregar_{{forloop.counter}}">
                 {{ result.CantTotAEntregar }}
             </td>
-            <td class="col-xs-2">
+            <td class="col-xs-2" id="DirPaciente_{{forloop.counter}}">
                 {{ result.DirPaciente }}
             </td>
-            <td class="col-xs-2">
-                {{ result.CodSerTecAEntregar }}
+            <td class="col-xs-2" id="CodTecAEntregar_{{forloop.counter}}">
+                {{ result.CodTecAEntregar }}
             </td>
         </tr>
         {% endfor %}
     </tbody>
   </table>
+  <!-- end render table Addressing-->
+
 </div>
 </main>
+<!-- Modal Addressing Date-->
+<div class="modal fade" id="addressingDateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Selecciona una fecha para consultar.</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">   
+          <form action="{% url 'addressing-date' %}" method="post">
+            {% csrf_token %}
+            <input class="form-control" type="date" name="date" value="YYYY/mm/dd" id="date-start">
+            <hr>
+            <input type="submit" value="Consulta" id="button-consult" class="btn btn-success btn-lg">
+          </form>
+        </div>  
+      </div>
+    </div>
+</div>
+<!-- End Modal Addressing Date-->
+
+<!-- Modal Programming-->
+<div class="modal fade" id="addressingProgramModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Programar</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">   
+          <form action="{% url 'addressing-program' %}" method="post">
+            {% csrf_token %}
+            <h6 id="numAddressing2"></h6>
+            <input type="text" name="numAddressing" value="" id="numAddressing" style="display:none">
+            <input type="text" name="TipoTec" value="" id="TipoTec" style="display:none">
+            <input type="text" name="ConTec" value="" id="ConTec" style="display:none">
+            <input type="text" name="NoIdPaciente" value="" id="NoIdPaciente" style="display:none">
+            <input type="text" name="NoEntrega" value="" id="NoEntrega" style="display:none">
+            <input type="text" name="NoSubEntrega" value="" id="NoSubEntrega" style="display:none">
+            <input type="text" name="TipoIDProv" value="" id="TipoIDProv" style="display:none">
+            <input type="text" name="NoIDProv" value="" id="NoIDProv" style="display:none">
+            <input type="text" name="CodMunEnt" value="" id="CodMunEnt" style="display:none">
+            <input type="text" name="FecMaxEnt" value="" id="FecMaxEnt" style="display:none">
+            <input type="text" name="CantTotAEntregar" value="" id="CantTotAEntregar" style="display:none">
+            <input type="text" name="DirPaciente" value="" id="DirPaciente" style="display:none">
+            <input type="text" name="CodTecAEntregar" value="" id="CodTecAEntregar" style="display:none">
+            <input type="text" name="ConTec" value="" id="ConTec" style="display:none">
+            <hr>
+            <input type="submit" value="Programar" id="button-program" class="btn btn-success btn-lg">
+          </form>
+        </div>  
+      </div>
+    </div>
+</div>
 {% endblock %}
 {% block scripts %}
     <script src="{% static 'js/program_addressing.js' %}"></script>

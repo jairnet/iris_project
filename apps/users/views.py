@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect, render_to_response
-from django.views.decorators.csrf import csrf_protect
 from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse
@@ -20,7 +19,7 @@ from django.db.utils import IntegrityError
 #     def get_success_url(self):
 #         return reverse("dashboard")
 
-@csrf_protect
+
 def loginView(request):
     nit = name_company = ''
     if request.method == 'POST':
