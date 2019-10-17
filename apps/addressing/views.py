@@ -33,10 +33,12 @@ class AddressingProgramView(View):
     template_name = 'addressing/addressing_program.html'
 
     def get(self, request, *args, **kwargs):
+        print('REQUEST OF PROGRAMMING>>>>', request)
         return render(request, self.template_name, context={})
     
     def post(self, request, *args, **kwargs):
-        id = self.request.POST.get('ID', None)
+        print('ID User', self.request.POST.get('ID', None))
+        ID = self.request.POST.get('ID', None)
         numAddressing = self.request.POST.get('numAddressing', None)
         TipoTec = self.request.POST.get('TipoTec', None)
         ConTec = self.request.POST.get('ConTec', None)
@@ -50,13 +52,10 @@ class AddressingProgramView(View):
         CantTotAEntregar = self.request.POST.get('CantTotAEntregar', None)
         DirPaciente = self.request.POST.get('DirPaciente', None)
         CodTecAEntregar = self.request.POST.get('CodTecAEntregar', None)
-        print('\n\n\n')
-        print('URL:::::', choices.programming)
-        
         response = requests.put(
             choices.programming,
             data = {
-                "id": id,
+                "id": ID,
                 "FecMaxEnt": FecMaxEnt,
                 "TipoIDSedeProv": TipoIDProv,
                 "NoIDSedeProv": NoIDProv,

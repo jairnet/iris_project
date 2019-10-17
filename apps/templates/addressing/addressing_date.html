@@ -91,7 +91,7 @@
                 {{ result.DirPaciente }}
             </td>
             <td class="col-xs-2" id="CodTecAEntregar_{{forloop.counter}}">
-                {{ result.CodTecAEntregar }}
+                {{ result.CodSerTecAEntregar }}
             </td>
         </tr>
         {% endfor %}
@@ -139,6 +139,7 @@
             {% csrf_token %}
             <h6 id="numAddressing2"></h6>
             <input type="text" name="numAddressing" value="" id="numAddressing" style="display:none">
+            <input type="text" name="ID" value="" id="ID" style="display:none">
             <input type="text" name="TipoTec" value="" id="TipoTec" style="display:none">
             <input type="text" name="ConTec" value="" id="ConTec" style="display:none">
             <input type="text" name="NoIdPaciente" value="" id="NoIdPaciente" style="display:none">

@@ -8,6 +8,7 @@ ROL_USER = (
 
 # addressing_date = "https://tablas.sispro.gov.co/WSSUMMIPRESNOPBS/api/DireccionamientoXFecha/"
 addressing_date = "https://apimipres.herokuapp.com/api/addressdate/"
-programming = "https://apimipres.herokuapp.com/api/programming/"
+# programming = "https://apimipres.herokuapp.com/api/programming/"
+programming = "http://127.0.0.1:5500/api/programming/"
 # addressing_date = "https://apimipres.herokuapp.com/api/addressprescription/"
 # addressing_date = "https://apimipres.herokuapp.com/api/addressdocument/"

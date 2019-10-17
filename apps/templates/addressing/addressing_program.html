@@ -12,4 +12,96 @@
     <h1>{{ numAddressing }}</h1>
     <h1>{{ TipoTec }}</h1>
     <h1>{{ results }}</h1>
+    <main role="main" class="container">
+
+        <!-- render table Addressing-->
+        <div class="table-responsive">
+          <table class="table">
+          <thead>
+          <tr>
+                {ID, NoPrescripcion, IDProgramacion, TipoIDPaciente, NoIdPaciente, 'FecMaxEnt': 'TipoIDSedeProv': , 'NoIDSedeProv': , 'CodSedeProv': , 'CodTecAEntregar': , 'CantTotAEntregar':, 'TipoTec': , 'ConTec': , 'NoEntrega':, 'FecProgramacion': , 'EstProgramacion':, 'FechaAnulacion':}
+
+              <th scopr="col">Id</th>
+              <th scopr="col">NoPrescripcion</th>
+              <th scopr="col">IDProgramacion</th>
+              <th scopr="col">TipoIDPaciente</th>
+              <th scopr="col">No Identificacion Paciente</th>
+              <th scopr="col">Fecha Maxima Entrega</th>
+              <th scopr="col">Tipo Id Sede Proveedor</th>
+              <th scopr="col">Numero Id Proveedor</th>
+              <th scopr="col">Codigo Sede Proveedor</th>
+              <th scopr="col">Codigo Tecnico A Entregar</th>
+              <th scopr="col">Cantidad a Entregar</th>
+              <th scopr="col">Tipo Tecnologia</th>
+              <th scopr="col">Con Tec</th>
+              <th scopr="col">No de Entrega</th>
+              <th scopr="col">Fecha de Programacion</th>
+              <th scopr="col">Estimacion Programacion</th>
+              <th scopr="col">Fecha Anulacion</th>
+          </tr>
+          </thead>
+          <h1 id="demo"></h1>
+          <tbody id='repos'>
+              {% for result in results %}
+              <tr>
+                  <!-- <td>
+                      <a href="{{ object.get_absolute_url }}">{{ object|upper }}</a>
+                  </td> -->
+                  <td class="col-xs-2" >
+                      <span style="font-size: 30px; color: green;">
+                          <a type="button">
+                              <i class="far fa-calendar-check" data-toggle="modal" data-target="#addressingProgramModal" onclick="return loadAddressings('{{forloop.counter}}')"></i>
+                          </a>
+                      </span>
+                  </td>
+                  <td class="col-xs-2" id="ID_{{forloop.counter}}">
+                      {{ result.id }}
+                  </td>
+                  <td class="col-xs-2" id="NoPrescripcion_{{forloop.counter}}">
+                      {{ result.NoPrescripcion }}
+                  </td>
+                  <td class="col-xs-2" id="TipoTec_{{forloop.counter}}">
+                      {{ result.TipoTec }}
+                  </td>
+                  <td class="col-xs-2" id="ConTec_{{forloop.counter}}">
+                      {{ result.ConTec }}
+                  </td>
+                  <td class="col-xs-2" id="NoIdPaciente_{{forloop.counter}}">
+                      {{ result.NoIdPaciente }}
+                  </td>
+                  <td class="col-xs-2" id="NoEntrega_{{forloop.counter}}">
+                      {{ result.NoEntrega }}
+                  </td>
+                  <td class="col-xs-2" id="NoSubEntrega_{{forloop.counter}}">
+                      {{ result.NoSubEntrega }}
+                  </td>
+                  <td class="col-xs-2" id="TipoIDProv_{{forloop.counter}}">
+                      {{ result.TipoIDProv }}
+                  </td>
+                  <td class="col-xs-2" id="NoIDProv_{{forloop.counter}}">
+                      {{ result.NoIDProv }}
+                  </td>
+                  <td class="col-xs-2" id="CodMunEnt_{{forloop.counter}}">
+                      {{ result.CodMunEnt }}
+                  </td>
+                  <td class="col-xs-2" id="FecMaxEnt_{{forloop.counter}}">
+                      {{ result.FecMaxEnt }}
+                  </td>
+                  <td class="col-xs-2" id="CantTotAEntregar_{{forloop.counter}}">
+                      {{ result.CantTotAEntregar }}
+                  </td>
+                  <td class="col-xs-2" id="DirPaciente_{{forloop.counter}}">
+                      {{ result.DirPaciente }}
+                  </td>
+                  <td class="col-xs-2" id="CodTecAEntregar_{{forloop.counter}}">
+                      {{ result.CodSerTecAEntregar }}
+                  </td>
+              </tr>
+              {% endfor %}
+          </tbody>
+        </table>
+        <!-- end render table Addressing-->
+      
+      </div>
+      </main>
 {% endblock %}
